@@ -1,0 +1,206 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Лабораторно-практическая работа №6. Блочная модель</title><style>
+:root{
+--bg:#f7f8fb;--surface:#fff;--text:#20242a;--muted:#6b7280;--line:#e5e7eb;
+--accent:#2f6fed;--accent-soft:#eef4ff;--code:#161b22;--codeText:#f0f3f6;
+--task:#fffaf0;--answer:#f1fbf5;--warn:#fff5f5;--check:#fafbfc
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.68}
+header{background:#fff;border-bottom:1px solid var(--line)}
+header .wrap,main{max-width:1000px;margin:0 auto}
+header .wrap{padding:40px 24px 30px}
+h1{margin:0 0 10px;font-size:clamp(30px,4.5vw,44px);line-height:1.1}
+header p{margin:0;color:var(--muted);font-size:17px;max-width:780px}
+main{padding:28px 24px 70px}
+.card,.toc,.sandbox-link{background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.card{padding:28px;margin-bottom:22px}
+.toc,.sandbox-link{padding:18px 20px;margin-bottom:22px}
+.toc a{display:inline-block;margin:5px 10px 5px 0;color:var(--accent);font-weight:650;text-decoration:none;font-size:14px}
+h2{margin:0 0 14px;font-size:28px;line-height:1.2}
+h3{margin:28px 0 10px;font-size:20px}
+h4{margin:20px 0 8px;font-size:17px}
+p{margin:10px 0}
+ul,ol{padding-left:23px}
+li{margin:5px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:14px 0}
+.mini{background:#fbfcfe;border:1px solid var(--line);border-radius:10px;padding:15px}
+.note,.task,.answer,.warning,.checkpoint{border-radius:10px;padding:14px 16px;margin:16px 0}
+.note{background:var(--accent-soft);border-left:4px solid var(--accent)}
+.task{background:var(--task);border:1px solid #efddb0}
+.answer{background:var(--answer);border:1px solid #c9ead5}
+.warning{background:var(--warn);border:1px solid #efcccc}
+.checkpoint{background:var(--check);border:1px dashed #cfd5df}
+.inline{background:#f0f3f8;color:#2d3748;border-radius:4px;padding:2px 5px;font-family:monospace}
+.example{margin:14px 0 22px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.example-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 12px;background:#fafbfc;border-bottom:1px solid var(--line)}
+.example-title{font-size:13px;font-weight:700;color:#4b5563}
+button.copy{border:1px solid #d7deea;border-radius:7px;background:#fff;color:#2f5fb9;padding:7px 10px;font-size:13px;font-weight:700;cursor:pointer}
+button.copy.copied{color:#17663a;background:#f1fbf5;border-color:#bfe1cb}
+pre{margin:0;padding:16px;overflow:auto;background:var(--code);color:var(--codeText);font-size:13px;line-height:1.55;white-space:pre}
+code{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+details{margin:14px 0;border:1px solid var(--line);border-radius:9px;background:#fff}
+summary{cursor:pointer;font-weight:700;padding:11px 13px}
+details>div{padding:0 13px 13px}
+.sandbox-link{display:flex;align-items:center;justify-content:space-between;gap:18px;background:#eef4ff;border-color:#d8e5ff}
+.sandbox-link strong{font-size:17px}
+.sandbox-link p{margin:4px 0 0;color:var(--muted);font-size:14px}
+.sandbox-link a{display:inline-block;flex:0 0 auto;padding:10px 14px;border-radius:8px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:14px}
+table{width:100%;border-collapse:collapse;margin:14px 0}
+th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}
+th{background:#fafbfc}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:0 20px 38px}
+@media(max-width:720px){
+header .wrap,main{padding-left:16px;padding-right:16px}
+.card{padding:20px}.sandbox-link{align-items:flex-start;flex-direction:column}.sandbox-link a{width:100%;text-align:center}
+.example-head{align-items:flex-start;flex-direction:column}.toc a{display:block;margin:5px 0}pre{font-size:12px}
+}
+</style></head>
+<body><header><div class="wrap"><h1>Лабораторно-практическая работа №6. Блочная модель</h1><p>Освоить тему «Блочная модель» и закрепить её на серии практических упражнений.</p></div></header><main><section class="sandbox-link"><div><strong>Песочница CodePen</strong><p>Используйте её для быстрых экспериментов и визуальной проверки.</p></div><a href="https://codepen.io/hexlet/pen/yzGrvX" target="_blank" rel="noopener noreferrer">Открыть CodePen</a></section><nav class="toc"><strong>Содержание</strong>
+<a href="#plan">План</a><a href="#theory">Теория</a><a href="#examples">Примеры</a><a href="#practice">Задания</a><a href="#check">Проверка</a>
+</nav>
+<section class="card" id="plan"><h2>План работы</h2><div class="grid">
+<div class="mini">
+<h3>Время</h3><p>2 академических часа.</p></div>
+<div class="mini"><h3>Цель</h3><p>Освоить тему «Блочная модель» и закрепить её на серии практических упражнений.</p></div>
+<div class="mini"><h3>Результат</h3><p>Готовые упражнения + самостоятельный мини-фрагмент.</p></div>
+</div>
+<h3>Рекомендуемый темп</h3>
+<ol><li>25–30 минут — подробный разбор теории.</li><li>20 минут — работа с примерами.</li><li>45–50 минут — задания 1–5.</li><li>20 минут — самостоятельная часть.</li><li>10 минут — проверка и вопросы.</li></ol></section>
+<section class="card" id="theory"><h2>Теоретическая часть</h2><h3>1. Основная идея</h3><p>Каждый HTML-блок имеет содержимое, внутренние отступы <span class='inline'>padding</span>, рамку <span class='inline'>border</span> и внешние отступы <span class='inline'>margin</span>.</p><h3>2. Как это устроено</h3><p><span class='inline'>width</span> задаёт ширину содержимого, но при стандартной модели padding и border могут увеличить реальный размер блока.</p><div class='checkpoint'><strong>Проверка понимания:</strong> попробуйте своими словами объяснить преподавателю, что делает показанная конструкция и где она используется.</div><h3>3. На что обратить внимание</h3><p>Свойство <span class='inline'>box-sizing: border-box</span> делает расчёт размеров удобнее: padding и border включаются в width.</p><h3>4. Практический смысл</h3><p><span class='inline'>border-radius</span> скругляет углы и часто используется для карточек и кнопок.</p></section>
+<section class="card" id="examples"><h2>Разбор примеров</h2><h3>Карточка</h3><div class="example"><div class="example-head"><span class="example-title">Карточка</span><button class="copy" data-copy="c1">Копировать</button></div><pre><code id="c1">.card {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin: 20px;
+  border-radius: 12px;
+}</code></pre></div><h3>border-box</h3><div class="example"><div class="example-head"><span class="example-title">border-box</span><button class="copy" data-copy="c2">Копировать</button></div><pre><code id="c2">* {
+  box-sizing: border-box;
+}</code></pre></div></section>
+<section class="card" id="practice"><h2>Практические задания</h2><h3>1. Простая карточка</h3>
+<div class='task'>
+  <strong>Что нужно сделать</strong>
+  <p>Добавьте width, padding и border.</p>
+
+  <strong>Как выполнять</strong>
+  <ol>
+    <li>Скопируйте стартовый код ниже в свою IDE или в CodePen.</li>
+    <li>Найдите место, которое нужно изменить.</li>
+    <li>Внесите изменения по условию задания.</li>
+    <li>Сохраните файл и обновите страницу в браузере.</li>
+  </ol>
+
+  <strong>Проверь себя</strong>
+  <ul>
+    <li>Страница открывается без явных ошибок.</li>
+    <li>Изменение видно в браузере.</li>
+    <li>Вы можете показать преподавателю строку кода, которая отвечает за результат.</li>
+  </ul>
+</div>
+<div class="example"><div class="example-head"><span class="example-title">Стартовый код</span><button class="copy" data-copy="c3">Копировать</button></div>
+<pre><code id="c3">&lt;div class=&#x27;card&#x27;&gt;&lt;h2&gt;HTML&lt;/h2&gt;&lt;p&gt;Описание.&lt;/p&gt;&lt;/div&gt;</code></pre></div>
+<h3>2. Скругление и фон</h3>
+<div class='task'>
+  <strong>Что нужно сделать</strong>
+  <p>Добавьте border-radius и белый фон.</p>
+
+  <strong>Как выполнять</strong>
+  <ol>
+    <li>Скопируйте стартовый код ниже в свою IDE или в CodePen.</li>
+    <li>Найдите место, которое нужно изменить.</li>
+    <li>Внесите изменения по условию задания.</li>
+    <li>Сохраните файл и обновите страницу в браузере.</li>
+  </ol>
+
+  <strong>Проверь себя</strong>
+  <ul>
+    <li>Страница открывается без явных ошибок.</li>
+    <li>Изменение видно в браузере.</li>
+    <li>Вы можете показать преподавателю строку кода, которая отвечает за результат.</li>
+  </ul>
+</div>
+<div class="example"><div class="example-head"><span class="example-title">Стартовый код</span><button class="copy" data-copy="c4">Копировать</button></div>
+<pre><code id="c4">&lt;style&gt;.card{padding:20px;border:1px solid #ccc}&lt;/style&gt;</code></pre></div>
+<h3>3. Сравните padding</h3>
+<div class='task'>
+  <strong>Что нужно сделать</strong>
+  <p>Сделайте две карточки с padding 10px и 40px.</p>
+
+  <strong>Как выполнять</strong>
+  <ol>
+    <li>Скопируйте стартовый код ниже в свою IDE или в CodePen.</li>
+    <li>Найдите место, которое нужно изменить.</li>
+    <li>Внесите изменения по условию задания.</li>
+    <li>Сохраните файл и обновите страницу в браузере.</li>
+  </ol>
+
+  <strong>Проверь себя</strong>
+  <ul>
+    <li>Страница открывается без явных ошибок.</li>
+    <li>Изменение видно в браузере.</li>
+    <li>Вы можете показать преподавателю строку кода, которая отвечает за результат.</li>
+  </ul>
+</div>
+<div class="example"><div class="example-head"><span class="example-title">Стартовый код</span><button class="copy" data-copy="c5">Копировать</button></div>
+<pre><code id="c5">&lt;div class=&#x27;small&#x27;&gt;A&lt;/div&gt;&lt;div class=&#x27;large&#x27;&gt;B&lt;/div&gt;</code></pre></div>
+<h3>4. Margin</h3>
+<div class='task'>
+  <strong>Что нужно сделать</strong>
+  <p>Добавьте расстояние между карточками через margin.</p>
+
+  <strong>Как выполнять</strong>
+  <ol>
+    <li>Скопируйте стартовый код ниже в свою IDE или в CodePen.</li>
+    <li>Найдите место, которое нужно изменить.</li>
+    <li>Внесите изменения по условию задания.</li>
+    <li>Сохраните файл и обновите страницу в браузере.</li>
+  </ol>
+
+  <strong>Проверь себя</strong>
+  <ul>
+    <li>Страница открывается без явных ошибок.</li>
+    <li>Изменение видно в браузере.</li>
+    <li>Вы можете показать преподавателю строку кода, которая отвечает за результат.</li>
+  </ul>
+</div>
+<div class="example"><div class="example-head"><span class="example-title">Стартовый код</span><button class="copy" data-copy="c6">Копировать</button></div>
+<pre><code id="c6">&lt;div class=&#x27;card&#x27;&gt;1&lt;/div&gt;&lt;div class=&#x27;card&#x27;&gt;2&lt;/div&gt;</code></pre></div>
+<h3>5. box-sizing</h3>
+<div class='task'>
+  <strong>Что нужно сделать</strong>
+  <p>Добавьте глобальный border-box.</p>
+
+  <strong>Как выполнять</strong>
+  <ol>
+    <li>Скопируйте стартовый код ниже в свою IDE или в CodePen.</li>
+    <li>Найдите место, которое нужно изменить.</li>
+    <li>Внесите изменения по условию задания.</li>
+    <li>Сохраните файл и обновите страницу в браузере.</li>
+  </ol>
+
+  <strong>Проверь себя</strong>
+  <ul>
+    <li>Страница открывается без явных ошибок.</li>
+    <li>Изменение видно в браузере.</li>
+    <li>Вы можете показать преподавателю строку кода, которая отвечает за результат.</li>
+  </ul>
+</div>
+<div class="example"><div class="example-head"><span class="example-title">Стартовый код</span><button class="copy" data-copy="c7">Копировать</button></div>
+<pre><code id="c7">&lt;style&gt;/* правило */&lt;/style&gt;</code></pre></div><h3>Самостоятельная часть</h3><div class='task'><strong>Без готового стартового кода.</strong><br>Сделайте три карточки курса с одинаковым классом: заголовок, описание, цена и кнопка.</div></section>
+<section class="card" id="check"><h2>Проверка работы</h2><ul>
+<li>Все обязательные задания выполнены.</li>
+<li>Код сохранён и отображается в браузере.</li>
+<li>Нет очевидно незакрытых тегов и сломанных правило выбора элементаов.</li>
+<li>Студент может объяснить ключевые конструкции лабораторной.</li>
+<li>Самостоятельная часть отличается от примеров, а не просто копирует их.</li>
+</ul></section>
+</main><footer>HTML/CSS • работа №6</footer>
+<script>
+document.querySelectorAll('.copy').forEach(btn=>{
+btn.addEventListener('click',async()=>{
+const el=document.getElementById(btn.dataset.copy),text=el.textContent;
+try{await navigator.clipboard.writeText(text);const old=btn.textContent;btn.textContent='Скопировано!';btn.classList.add('copied');setTimeout(()=>{btn.textContent=old;btn.classList.remove('copied')},1200)}
+catch(e){const r=document.createRange();r.selectNodeContents(el);const s=window.getSelection();s.removeAllRanges();s.addRange(r)}
+})})
+</script>
+</body></html>
