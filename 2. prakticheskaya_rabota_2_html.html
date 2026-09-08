@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практическая работа: Основы HTML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 24px;
+            background: #f4f4f4;
+            color: #222;
+        }
+
+        header, main, footer {
+            background: white;
+            padding: 24px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        h1, h2 {
+            margin-top: 0;
+        }
+
+        code, pre {
+            font-family: Consolas, monospace;
+        }
+
+        pre {
+            background: #f0f0f0;
+            padding: 16px;
+            overflow-x: auto;
+            border-radius: 8px;
+        }
+
+        .task {
+            border-left: 4px solid #444;
+            padding-left: 16px;
+            margin: 24px 0;
+        }
+
+        .checklist li {
+            margin-bottom: 8px;
+        }
+
+        .note {
+            background: #fff8d8;
+            padding: 14px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Практическая работа №2</h1>
+    <p><strong>Тема:</strong> Структура HTML-документа и основные элементы</p>
+    <p><strong>Цель:</strong> научиться создавать простую HTML-страницу и использовать основные теги.</p>
+</header>
+
+<main>
+
+    <section>
+        <h2>Задание</h2>
+
+        <p>
+            Создайте простую веб-страницу на тему
+            <strong>«Моя учебная страница»</strong>.
+        </p>
+
+        <p>На странице должны быть:</p>
+
+        <ul class="checklist">
+            <li>главный заголовок;</li>
+            <li>не менее двух подзаголовков;</li>
+            <li>несколько абзацев текста;</li>
+            <li>маркированный список;</li>
+            <li>нумерованный список;</li>
+            <li>ссылка на внешний сайт;</li>
+            <li>изображение;</li>
+            <li>семантические элементы страницы.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Часть 1. Создание структуры документа</h2>
+
+        <div class="task">
+            <p>
+                Создайте файл <code>index.html</code> и добавьте базовую структуру HTML-документа.
+            </p>
+        </div>
+
+        <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Моя учебная страница&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+        <p class="note">
+            Проверьте, что файл сохранён с расширением <strong>.html</strong>,
+            а не <strong>.txt</strong>.
+        </p>
+    </section>
+
+    <section>
+        <h2>Часть 2. Семантическая структура</h2>
+
+        <p>Внутри <code>&lt;body&gt;</code> создайте:</p>
+
+        <ul>
+            <li><code>&lt;header&gt;</code> — верхняя часть страницы;</li>
+            <li><code>&lt;nav&gt;</code> — навигация;</li>
+            <li><code>&lt;main&gt;</code> — основное содержимое;</li>
+            <li><code>&lt;section&gt;</code> — отдельные смысловые разделы;</li>
+            <li><code>&lt;footer&gt;</code> — нижняя часть страницы.</li>
+        </ul>
+
+        <p>Пример:</p>
+
+        <pre><code>&lt;body&gt;
+
+    &lt;header&gt;
+        ...
+    &lt;/header&gt;
+
+    &lt;nav&gt;
+        ...
+    &lt;/nav&gt;
+
+    &lt;main&gt;
+
+        &lt;section&gt;
+            ...
+        &lt;/section&gt;
+
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        ...
+    &lt;/footer&gt;
+
+&lt;/body&gt;</code></pre>
+    </section>
+
+    <section>
+        <h2>Часть 3. Заголовки и абзацы</h2>
+
+        <div class="task">
+            <p>Добавьте:</p>
+
+            <ol>
+                <li>один главный заголовок <code>&lt;h1&gt;</code>;</li>
+                <li>минимум два заголовка второго уровня <code>&lt;h2&gt;</code>;</li>
+                <li>не менее трёх абзацев <code>&lt;p&gt;</code>.</li>
+            </ol>
+        </div>
+
+        <p>Например:</p>
+
+        <pre><code>&lt;h1&gt;Моя учебная страница&lt;/h1&gt;
+
+&lt;h2&gt;Обо мне&lt;/h2&gt;
+
+&lt;p&gt;
+    Меня зовут Иван. Я учусь в колледже.
+&lt;/p&gt;
+
+&lt;p&gt;
+    Мне интересны информационные технологии.
+&lt;/p&gt;</code></pre>
+    </section>
+
+    <section>
+        <h2>Часть 4. Списки</h2>
+
+        <div class="task">
+            <p>
+                Создайте маркированный список
+                <strong>«Мои интересы»</strong>.
+            </p>
+        </div>
+
+        <pre><code>&lt;ul&gt;
+    &lt;li&gt;Компьютеры&lt;/li&gt;
+    &lt;li&gt;Музыка&lt;/li&gt;
+    &lt;li&gt;Спорт&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+        <div class="task">
+            <p>
+                Создайте нумерованный список
+                <strong>«Что я хочу изучить»</strong>.
+            </p>
+        </div>
+
+        <pre><code>&lt;ol&gt;
+    &lt;li&gt;HTML&lt;/li&gt;
+    &lt;li&gt;CSS&lt;/li&gt;
+    &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+    </section>
+
+    <section>
+        <h2>Часть 5. Ссылка</h2>
+
+        <p>
+            Добавьте ссылку на полезный образовательный ресурс.
+        </p>
+
+        <pre><code>&lt;a href="https://example.com"&gt;
+    Перейти на сайт
+&lt;/a&gt;</code></pre>
+
+        <div class="task">
+            <p>
+                Измените адрес и текст ссылки самостоятельно.
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Часть 6. Изображение</h2>
+
+        <p>
+            Сохраните рядом с HTML-файлом любое подходящее изображение.
+            Например:
+        </p>
+
+        <p><code>photo.jpg</code></p>
+
+        <p>Добавьте его на страницу:</p>
+
+        <pre><code>&lt;img src="photo.jpg" alt="Описание изображения" width="400"&gt;</code></pre>
+
+        <p class="note">
+            Атрибут <code>alt</code> должен описывать, что находится на изображении.
+        </p>
+    </section>
+
+    <section>
+        <h2>Часть 7. Навигация</h2>
+
+        <p>
+            Внутри <code>&lt;nav&gt;</code> добавьте несколько ссылок-заглушек:
+        </p>
+
+        <pre><code>&lt;nav&gt;
+    &lt;a href="#"&gt;Главная&lt;/a&gt;
+    &lt;a href="#"&gt;Обо мне&lt;/a&gt;
+    &lt;a href="#"&gt;Контакты&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+    </section>
+
+    <section>
+        <h2>Часть 8. Нижняя часть страницы</h2>
+
+        <p>
+            Внутри <code>&lt;footer&gt;</code> добавьте имя автора и год.
+        </p>
+
+        <pre><code>&lt;footer&gt;
+    &lt;p&gt;Автор: Иван Иванов, 2026&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+    </section>
+
+    <section>
+        <h2>Итоговая структура</h2>
+
+        <p>В результате ваша страница должна примерно иметь такую структуру:</p>
+
+        <pre><code>&lt;body&gt;
+
+    &lt;header&gt;
+        &lt;h1&gt;Моя учебная страница&lt;/h1&gt;
+    &lt;/header&gt;
+
+    &lt;nav&gt;
+        ссылки
+    &lt;/nav&gt;
+
+    &lt;main&gt;
+
+        &lt;section&gt;
+            &lt;h2&gt;Обо мне&lt;/h2&gt;
+            абзацы
+        &lt;/section&gt;
+
+        &lt;section&gt;
+            &lt;h2&gt;Мои интересы&lt;/h2&gt;
+            список
+        &lt;/section&gt;
+
+        &lt;section&gt;
+            &lt;h2&gt;Что я хочу изучить&lt;/h2&gt;
+            список
+        &lt;/section&gt;
+
+        &lt;section&gt;
+            ссылка и изображение
+        &lt;/section&gt;
+
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        информация об авторе
+    &lt;/footer&gt;
+
+&lt;/body&gt;</code></pre>
+    </section>
+
+    <section>
+        <h2>Дополнительное задание</h2>
+
+        <p>Для тех, кто закончил раньше:</p>
+
+        <ol>
+            <li>Добавьте ещё один раздел <code>&lt;section&gt;</code>.</li>
+            <li>Добавьте заголовок <code>&lt;h3&gt;</code>.</li>
+            <li>Добавьте второе изображение.</li>
+            <li>Сделайте ссылку на другую HTML-страницу.</li>
+            <li>
+                Создайте файл <code>contacts.html</code> и свяжите две страницы ссылками.
+            </li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Что нужно сдать</h2>
+
+        <ul>
+            <li>файл <code>index.html</code>;</li>
+            <li>используемое изображение;</li>
+            <li>дополнительный файл <code>contacts.html</code>, если выполнено дополнительное задание.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Критерии проверки</h2>
+
+        <ol>
+            <li>HTML-документ имеет правильную структуру.</li>
+            <li>Используются семантические теги.</li>
+            <li>Есть заголовки и абзацы.</li>
+            <li>Есть оба вида списков.</li>
+            <li>Ссылка работает.</li>
+            <li>Изображение отображается.</li>
+            <li>У изображения заполнен <code>alt</code>.</li>
+            <li>Теги правильно вложены и закрыты.</li>
+            <li>Страница открывается в браузере без явных ошибок.</li>
+        </ol>
+    </section>
+
+</main>
+
+<footer>
+    <p>
+        Практическая работа по теме «Основы HTML»
+    </p>
+</footer>
+
+</body>
+</html>

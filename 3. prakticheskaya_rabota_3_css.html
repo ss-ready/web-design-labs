@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Практическая работа №3 — Основы CSS</title>
+<style>
+body{font-family:Arial,sans-serif;line-height:1.65;max-width:1050px;margin:0 auto;padding:24px;background:#f3f4f6;color:#222}
+header,main,footer{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px}
+section{margin-bottom:36px} h1,h2,h3{line-height:1.25} h1{margin-top:0}
+pre{background:#f1f1f1;padding:16px;border-radius:8px;overflow-x:auto;border:1px solid #ddd}
+code{font-family:Consolas,"Courier New",monospace}
+.task,.check,.note{padding:12px 16px;margin:16px 0;border-left:5px solid #555;background:#fafafa}
+.check{border-left-color:#4c8c4a;background:#eef8ee}
+.note{border-left-color:#c49a00;background:#fff6d8}
+table{width:100%;border-collapse:collapse;margin:16px 0}
+th,td{border:1px solid #ccc;padding:10px;text-align:left;vertical-align:top}
+th{background:#f2f2f2}
+li{margin-bottom:7px}
+</style>
+</head>
+<body>
+<header>
+<h1>Практическая работа №3</h1>
+<p><strong>Тема:</strong> Подключение CSS. Селекторы. Каскад и наследование. Единицы измерения. Блочная модель. Отступы, рамки и фон.</p>
+<p><strong>Цель:</strong> научиться подключать отдельный CSS-файл к HTML и пошагово оформлять страницу.</p>
+</header>
+
+<main>
+
+<section>
+<h2>Что вы сделаете</h2>
+<ul>
+<li>создадите файлы <code>index.html</code> и <code>style.css</code>;</li>
+<li>подключите CSS к HTML;</li>
+<li>проверите, что стили действительно работают;</li>
+<li>используете селекторы по тегу, классу и ID;</li>
+<li>разберёте каскад и наследование;</li>
+<li>поработаете с <code>px</code> и <code>%</code>;</li>
+<li>оформите карточки через <code>padding</code>, <code>margin</code>, <code>border</code>, фон и скругление.</li>
+</ul>
+</section>
+
+<section>
+<h2>1. Создаём папку проекта</h2>
+<div class="task">
+<p><strong>Шаг 1.</strong> Создайте папку, например <code>practice-css</code>.</p>
+<p><strong>Шаг 2.</strong> Внутри создайте два файла:</p>
+<ul><li><code>index.html</code></li><li><code>style.css</code></li></ul>
+</div>
+<pre><code>practice-css/
+│
+├── index.html
+└── style.css</code></pre>
+<div class="note"><strong>Проверьте расширения.</strong> Не должно быть <code>index.html.txt</code> или <code>style.css.txt</code>.</div>
+</section>
+
+<section>
+<h2>2. Создаём HTML-файл</h2>
+<p>Откройте <code>index.html</code> и вставьте:</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Учебные курсы&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;h1&gt;Учебные курсы&lt;/h1&gt;
+
+    &lt;p&gt;
+        На этой странице собраны направления,
+        которые мы изучаем на занятиях.
+    &lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<div class="check"><strong>Проверка:</strong> сохраните файл и откройте его в браузере. Должны появиться заголовок и абзац.</div>
+</section>
+
+<section>
+<h2>3. Как подключить CSS к HTML</h2>
+<p>Сейчас файл <code>style.css</code> существует, но HTML о нём ещё не знает.</p>
+<p>Внутрь <code>&lt;head&gt;</code> добавьте:</p>
+<pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+
+<p>Весь <code>&lt;head&gt;</code> будет выглядеть так:</p>
+<pre><code>&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+    &lt;title&gt;Учебные курсы&lt;/title&gt;
+
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;</code></pre>
+
+<table>
+<tr><th>Часть</th><th>Значение</th></tr>
+<tr><td><code>&lt;link&gt;</code></td><td>Подключает внешний файл.</td></tr>
+<tr><td><code>rel="stylesheet"</code></td><td>Говорит браузеру, что подключается таблица CSS-стилей.</td></tr>
+<tr><td><code>href="style.css"</code></td><td>Путь к CSS-файлу.</td></tr>
+</table>
+
+<p>Так как оба файла лежат рядом, путь очень простой:</p>
+<pre><code>href="style.css"</code></pre>
+
+<p>Если CSS лежит в папке <code>css</code>, путь будет:</p>
+<pre><code>&lt;link rel="stylesheet" href="css/style.css"&gt;</code></pre>
+</section>
+
+<section>
+<h2>4. Проверяем подключение CSS</h2>
+<p>Откройте <code>style.css</code> и напишите:</p>
+<pre><code>body {
+    background-color: lightblue;
+}</code></pre>
+<p>Сохраните CSS и обновите страницу.</p>
+<div class="check"><strong>Если фон стал голубым — CSS подключён правильно.</strong></div>
+
+<p>Если ничего не изменилось, проверьте:</p>
+<ol>
+<li>имя файла — <code>style.css</code>;</li>
+<li>оба файла лежат в одной папке;</li>
+<li>строка <code>&lt;link rel="stylesheet" href="style.css"&gt;</code> находится внутри <code>&lt;head&gt;</code>;</li>
+<li>оба файла сохранены;</li>
+<li>страница в браузере обновлена.</li>
+</ol>
+</section>
+
+<section>
+<h2>5. Первые стили</h2>
+<p>Замените тестовый CSS на:</p>
+<pre><code>body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #222222;
+}</code></pre>
+<p>Здесь:</p>
+<ul>
+<li><code>font-family</code> — шрифт;</li>
+<li><code>background-color</code> — фон;</li>
+<li><code>color</code> — цвет текста.</li>
+</ul>
+</section>
+
+<section>
+<h2>6. Селектор по тегу</h2>
+<p>Добавьте в <code>style.css</code>:</p>
+<pre><code>h1 {
+    color: darkblue;
+    font-size: 36px;
+}
+
+p {
+    font-size: 18px;
+}</code></pre>
+<p><code>h1</code> выбирает все заголовки <code>&lt;h1&gt;</code>, а <code>p</code> — все абзацы.</p>
+<div class="task"><strong>Задание:</strong> измените цвет заголовка и размер текста на свои значения.</div>
+</section>
+
+<section>
+<h2>7. Добавляем карточки</h2>
+<p>После первого абзаца в HTML добавьте:</p>
+<pre><code>&lt;div class="card"&gt;
+    &lt;h2&gt;HTML&lt;/h2&gt;
+    &lt;p&gt;Язык разметки для создания структуры веб-страницы.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="card"&gt;
+    &lt;h2&gt;CSS&lt;/h2&gt;
+    &lt;p&gt;Язык стилей для оформления веб-страницы.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="card special-card"&gt;
+    &lt;h2&gt;JavaScript&lt;/h2&gt;
+    &lt;p&gt;Язык программирования для добавления интерактивности.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</section>
+
+<section>
+<h2>8. Селектор по классу</h2>
+<p>В CSS точка означает класс:</p>
+<pre><code>.card {
+    background-color: white;
+}</code></pre>
+<p>Все элементы с <code>class="card"</code> получат белый фон.</p>
+<div class="note">В HTML: <code>class="card"</code>. В CSS: <code>.card</code>.</div>
+</section>
+
+<section>
+<h2>9. Блочная модель</h2>
+<p>Блок удобно представлять как коробку:</p>
+<pre><code>MARGIN
+    BORDER
+        PADDING
+            CONTENT</code></pre>
+
+<p>Измените стиль карточки:</p>
+<pre><code>.card {
+    background-color: white;
+
+    padding: 20px;
+    margin: 20px 0;
+
+    border: 1px solid #cccccc;
+}</code></pre>
+
+<ul>
+<li><code>padding</code> — отступ внутри;</li>
+<li><code>margin</code> — отступ снаружи;</li>
+<li><code>border</code> — рамка;</li>
+<li><code>content</code> — содержимое.</li>
+</ul>
+</section>
+
+<section>
+<h2>10. Эксперимент с padding и margin</h2>
+<div class="task">
+<p><strong>Эксперимент 1.</strong> Поставьте:</p>
+<pre><code>padding: 50px;</code></pre>
+<p>Текст отодвинется от краёв карточки.</p>
+</div>
+
+<div class="task">
+<p><strong>Эксперимент 2.</strong> Поставьте:</p>
+<pre><code>margin: 50px 0;</code></pre>
+<p>Карточки разойдутся дальше друг от друга.</p>
+</div>
+
+<p>После эксперимента верните:</p>
+<pre><code>padding: 20px;
+margin: 20px 0;</code></pre>
+</section>
+
+<section>
+<h2>11. Рамки и скругление</h2>
+<p>Добавьте:</p>
+<pre><code>.card {
+    background-color: white;
+    padding: 20px;
+    margin: 20px 0;
+
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+}</code></pre>
+<div class="task">Попробуйте <code>border-radius: 0px</code>, <code>20px</code>, <code>40px</code> и сравните.</div>
+</section>
+
+<section>
+<h2>12. Единицы измерения</h2>
+<p>Мы уже использовали <code>px</code>:</p>
+<pre><code>font-size: 18px;
+padding: 20px;</code></pre>
+
+<p>Добавьте к <code>body</code>:</p>
+<pre><code>max-width: 900px;
+margin: 0 auto;
+padding: 20px;</code></pre>
+
+<p>Теперь содержимое ограничено по ширине и расположено по центру.</p>
+
+<p>Попробуйте временно:</p>
+<pre><code>.card {
+    width: 80%;
+}</code></pre>
+<p><code>%</code> — относительная единица: размер зависит от родительского элемента.</p>
+</section>
+
+<section>
+<h2>13. Селектор по ID</h2>
+<p>Измените заголовок в HTML:</p>
+<pre><code>&lt;h1 id="main-title"&gt;Учебные курсы&lt;/h1&gt;</code></pre>
+
+<p>Добавьте в CSS:</p>
+<pre><code>#main-title {
+    text-align: center;
+}</code></pre>
+
+<div class="note">
+<strong>Запомните:</strong><br>
+класс — <code>.card</code><br>
+ID — <code>#main-title</code>
+</div>
+</section>
+
+<section>
+<h2>14. Каскад</h2>
+<p>Добавьте:</p>
+<pre><code>h2 {
+    color: blue;
+}
+
+.special-card h2 {
+    color: red;
+}</code></pre>
+
+<p>Обычные <code>h2</code> станут синими, а заголовок внутри <code>.special-card</code> — красным.</p>
+<p>Более конкретное правило получает преимущество.</p>
+
+<p>Теперь временно попробуйте:</p>
+<pre><code>p {
+    color: green;
+}
+
+p {
+    color: purple;
+}</code></pre>
+<p>При одинаковой специфичности сработает правило, написанное позже.</p>
+<div class="note">После эксперимента удалите эти два временных правила.</div>
+</section>
+
+<section>
+<h2>15. Наследование</h2>
+<p>Свойства вроде цвета текста и шрифта часто наследуются от родителя.</p>
+
+<p>Например:</p>
+<pre><code>body {
+    font-family: Georgia, serif;
+    color: #333333;
+}</code></pre>
+<p>Многие вложенные элементы автоматически получат этот шрифт и цвет.</p>
+<div class="task">Попробуйте поменять шрифт у <code>body</code> и посмотрите, сколько элементов изменилось сразу.</div>
+</section>
+
+<section>
+<h2>16. Специальная карточка</h2>
+<p>У третьего блока два класса:</p>
+<pre><code>class="card special-card"</code></pre>
+
+<p>Добавьте:</p>
+<pre><code>.special-card {
+    background-color: #fff3cd;
+    border: 2px solid #e0a800;
+}</code></pre>
+
+<p>К ней одновременно применяются стили <code>.card</code> и <code>.special-card</code>.</p>
+</section>
+
+<section>
+<h2>17. Добавляем кнопку-ссылку</h2>
+<p>В каждую карточку после абзаца добавьте:</p>
+<pre><code>&lt;a class="button" href="#"&gt;Подробнее&lt;/a&gt;</code></pre>
+
+<p>В CSS:</p>
+<pre><code>.button {
+    display: inline-block;
+
+    background-color: darkblue;
+    color: white;
+
+    padding: 10px 16px;
+    margin-top: 10px;
+
+    border-radius: 6px;
+    text-decoration: none;
+}</code></pre>
+</section>
+
+<section>
+<h2>18. Итоговый HTML</h2>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ru"&gt;
+
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Учебные курсы&lt;/title&gt;
+
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;h1 id="main-title"&gt;Учебные курсы&lt;/h1&gt;
+
+    &lt;p&gt;
+        На этой странице собраны направления,
+        которые мы изучаем на занятиях.
+    &lt;/p&gt;
+
+    &lt;div class="card"&gt;
+        &lt;h2&gt;HTML&lt;/h2&gt;
+        &lt;p&gt;Язык разметки для создания структуры веб-страницы.&lt;/p&gt;
+        &lt;a class="button" href="#"&gt;Подробнее&lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div class="card"&gt;
+        &lt;h2&gt;CSS&lt;/h2&gt;
+        &lt;p&gt;Язык стилей для оформления веб-страницы.&lt;/p&gt;
+        &lt;a class="button" href="#"&gt;Подробнее&lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div class="card special-card"&gt;
+        &lt;h2&gt;JavaScript&lt;/h2&gt;
+        &lt;p&gt;Язык программирования для добавления интерактивности.&lt;/p&gt;
+        &lt;a class="button" href="#"&gt;Подробнее&lt;/a&gt;
+    &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>
+
+<section>
+<h2>19. Итоговый CSS</h2>
+<pre><code>body {
+    font-family: Arial, sans-serif;
+
+    background-color: #f2f2f2;
+    color: #222222;
+
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: darkblue;
+    font-size: 36px;
+}
+
+h2 {
+    color: blue;
+}
+
+p {
+    font-size: 18px;
+}
+
+#main-title {
+    text-align: center;
+}
+
+.card {
+    background-color: white;
+
+    padding: 20px;
+    margin: 20px 0;
+
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+}
+
+.special-card {
+    background-color: #fff3cd;
+    border: 2px solid #e0a800;
+}
+
+.special-card h2 {
+    color: red;
+}
+
+.button {
+    display: inline-block;
+
+    background-color: darkblue;
+    color: white;
+
+    padding: 10px 16px;
+    margin-top: 10px;
+
+    border-radius: 6px;
+    text-decoration: none;
+}</code></pre>
+<div class="check"><strong>Лучше не копировать итоговый код сразу:</strong> выполняйте этапы последовательно и после каждого изменения обновляйте браузер.</div>
+</section>
+
+<section>
+<h2>20. Самостоятельная часть</h2>
+<ol>
+<li>Измените фон страницы.</li>
+<li>Выберите свой цвет заголовка.</li>
+<li>Измените размер <code>h1</code>.</li>
+<li>Измените рамку карточек.</li>
+<li>Подберите своё скругление.</li>
+<li>Измените <code>padding</code>.</li>
+<li>Измените <code>margin</code>.</li>
+<li>Измените цвет кнопки.</li>
+<li>Создайте четвёртую карточку.</li>
+<li>Дайте четвёртой карточке дополнительный класс и свой фон.</li>
+</ol>
+</section>
+
+<section>
+<h2>Дополнительное задание</h2>
+<ol>
+<li>Добавьте изображение в карточку.</li>
+<li>Задайте изображению <code>width: 100%</code>.</li>
+<li>Попробуйте использовать <code>rem</code> для размера текста.</li>
+<li>Создайте собственный класс <code>.note</code>.</li>
+<li>Сделайте отдельный стиль для ссылки при наведении через <code>:hover</code>.</li>
+</ol>
+</section>
+
+<section>
+<h2>Вопросы для проверки</h2>
+<ol>
+<li>Как подключить внешний CSS-файл к HTML?</li>
+<li>Где должен находиться тег <code>&lt;link&gt;</code>?</li>
+<li>Что означает <code>href="style.css"</code>?</li>
+<li>Как записывается селектор по тегу?</li>
+<li>Как записывается класс?</li>
+<li>Как записывается ID?</li>
+<li>Чем <code>padding</code> отличается от <code>margin</code>?</li>
+<li>Для чего нужен <code>border</code>?</li>
+<li>Что делает <code>background-color</code>?</li>
+<li>Что такое каскад?</li>
+<li>Что такое наследование?</li>
+<li>Чем <code>px</code> отличается от <code>%</code>?</li>
+</ol>
+</section>
+
+<section>
+<h2>Что нужно сдать</h2>
+<pre><code>practice-css/
+│
+├── index.html
+└── style.css</code></pre>
+<p>Оба файла должны находиться в одной папке и работать вместе.</p>
+</section>
+
+</main>
+
+<footer>
+<p>Практическая работа по теме «Основы CSS».</p>
+</footer>
+</body>
+</html>
